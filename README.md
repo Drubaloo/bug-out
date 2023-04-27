@@ -6,7 +6,7 @@
 MERN stack
 
 
-![Image of Preview](./preview.png)
+![Image of Preview](./preview.PNG)
 
 ## I love getting feedback and support! 🎆🎇🎈
 
