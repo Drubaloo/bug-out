@@ -12,7 +12,7 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(require("morgan")("dev"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 // app.use(

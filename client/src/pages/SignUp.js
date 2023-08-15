@@ -18,19 +18,26 @@ function SignUp(props) {
 
   function onSubmit(event) {
     event.preventDefault();
-
-    axios
-      .post("/api/users", {
-        user: {
-          email: signUp.email,
-          password: signUp.password,
-        },
-      })
+    fetch("/api/users", {
+      method: "POST",
+      headers: {
+      "Content-Type": "application/json"
+    },
+      body: JSON.stringify({...signUp})
+    }).then(resData => resData.json())
+    // axios
+    //   .post("/api/users", {
+    //     user: {
+    //       email: signUp.email,
+    //       password: signUp.password,
+    //     },
+    //   })
       .then(function (response) {
-        localStorage.setItem("data", JSON.stringify(response.data));
-        localStorage.setItem("token", JSON.stringify(response.data.user.token));
+        console.log(response)
+        localStorage.setItem("data", JSON.stringify(response));
+        localStorage.setItem("token", response.token);
         console.log("redirecting")
-         setRedirectToTest(true);
+        setRedirectToTest(true);
       })
       .catch(function (err) {
         console.log(err);
@@ -38,10 +45,12 @@ function SignUp(props) {
   }
 
   function joke() {
-    axios
-      .get("https://geek-jokes.sameerkumar.website/api?format=json")
+    fetch("https://geek-jokes.sameerkumar.website/api?format=json").then(resData => resData.json())
+    // axios
+    //   .get("https://geek-jokes.sameerkumar.website/api?format=json")
       .then(function (res) {
-        return localStorage.setItem("joke", res.data.joke);
+        console.log(res)
+        return localStorage.setItem("joke", res.joke);
       });
   }
 
